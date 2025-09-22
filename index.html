@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KayanPCC — Fire Safety & Security Systems</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Minimal custom CSS (kept tiny; Bootstrap handles the rest) -->
+    <style>
+      /* logo sizing helpers */
+      .nav-logo {
+        width: 44px;
+        height: 44px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .nav-link:focus {
+        border: 2px solid #f5ab0b;
+      }
+      .btn-hover:hover {
+        opacity: 0.5;
+      }
+      .footer-logo {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        display: inline-block;
+      }
+
+      /* micro-interactions + entrance animation (minimal) */
+      .card-hover {
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.45s ease, transform 0.45s ease;
+      }
+      .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .fade-in-up:hover {
+        transition: all 0.8s ease;
+        transform: scale(0.98, 0.97);
+      }
+
+      /* kept decorative project-card rules (small) */
+      .project-card::before,
+      .project-card::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        transition: all 0.5s ease;
+        z-index: 1;
+      }
+      .project-card::before {
+        top: 0;
+        left: 0;
+        border-top: 3px solid #fd7e14;
+        border-left: 3px solid #fd7e14;
+      }
+      .project-card::after {
+        bottom: 0;
+        right: 0;
+        border-bottom: 3px solid #dc3545;
+        border-right: 3px solid #dc3545;
+      }
+      .project-card:hover::before,
+      .project-card:hover::after {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+      }
+
+      /* small retained news/clipping rules */
+      .right-news-img-container {
+        overflow: hidden;
+        height: 100%;
+        clip-path: polygon(30% 0%, 99% 0%, 99% 100%, 50% 100%);
+      }
+      .left-news-img-container {
+        overflow: hidden;
+        height: 100%;
+        clip-path: polygon(1% 100%, 50% 100%, 70% 0%, 1% 0%);
+      }
+      .news-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+      .news-img-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.22);
+        clip-path: inherit;
+      }
+      .title-underline {
+        height: 6px;
+        overflow: hidden;
+        margin-top: 0.5rem;
+        border-radius: 6px;
+      }
+      .title-underline .bar {
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #dc3545, #ffc107);
+        animation: growBar 1.1s ease forwards;
+      }
+      @keyframes growBar {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <!-- NAVBAR -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-3 border-warning"
+    >
+      <div class="container-fluid">
+        <a
+          class="navbar-brand fw-bold text-warning d-flex align-items-center"
+          href="#home"
+        >
+          <!-- inline SVG logo (crisp at any size) -->
+          <svg
+            class="nav-logo me-2"
+            viewBox="0 0 100 100"
+            role="img"
+            aria-label="KayanPCC logo"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#fd7e14" />
+                <stop offset="1" stop-color="#dc3545" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="50" fill="#111827" />
+            <path d="M50 18 L66 58 L50 72 L34 58 Z" fill="url(#g1)" />
+            <path
+              d="M50 30 L56 50 L50 58 L44 50 Z"
+              fill="#fff"
+              opacity="0.95"
+            />
+          </svg>
+          <span>KayanPCC</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+          aria-controls="navMain"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+            <li class="nav-item">
+              <a
+                class="nav-link active text-warning fw-semibold"
+                aria-current="page"
+                href="#home"
+                >Home</a
+              >
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle text-light fw-semibold"
+                href="#"
+                id="servicesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Services</a
+              >
+              <ul
+                class="dropdown-menu border-warning border-2"
+                aria-labelledby="servicesDropdown"
+              >
+                <li>
+                  <a class="dropdown-item text-dark" href="#services"
+                    >Fire Alarm Systems</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item text-dark" href="#services"
+                    >Detection &amp; Sensors</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item text-dark" href="#services"
+                    >Suppression Systems</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-dark" href="#services"
+                    >Maintenance &amp; Support</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-light fw-semibold" href="#projects"
+                >Projects</a
+              >
+            </li>
+
+            <!-- About Us link added -->
+            <li class="nav-item">
+              <a class="nav-link text-light fw-semibold" href="#about"
+                >About Us</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-light fw-semibold" href="#contact"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <form
+            class="d-flex align-items-center"
+            role="search"
+            onsubmit="return false;"
+          >
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-warning me-2" type="submit">
+              Search
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning text-dark fw-semibold"
+              data-bs-toggle="modal"
+              data-bs-target="#contactModal"
+            >
+              Contact
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO CAROUSEL (shorter using inline style on images; no extra CSS file rules) -->
+    <main id="home" class="p-0">
+      <div
+        id="kayanCarousel"
+        class="carousel slide carousel-fade"
+        data-bs-ride="carousel"
+        data-bs-interval="7000"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#kayanCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#kayanCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#kayanCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="images/chris-porter--At4vx7KbAI-unsplash.jpg"
+              class="d-block w-100"
+              alt="Fire alarm control panel"
+              style="height: 60vh; object-fit: cover"
+            />
+            <div class="carousel-caption p-0">
+              <div
+                class="bg-dark bg-opacity-50 text-white p-4 rounded shadow-lg d-inline-block text-center"
+              >
+                <h1 class="mb-2 text-warning">Fire Alarm Systems</h1>
+                <p class="mb-3">
+                  Designing, installing and maintaining reliable fire alarm
+                  systems to protect people and property.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-hover btn-warning text-dark fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#contactModal"
+                >
+                  Contact Us
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img
+              src="images/isawred-2L6a8s2QMnc-unsplash.jpg"
+              class="d-block w-100"
+              alt="Smoke detectors"
+              style="height: 60vh; object-fit: cover"
+            />
+            <div class="carousel-caption p-0">
+              <div
+                class="bg-dark bg-opacity-50 text-white p-4 rounded shadow-lg d-inline-block text-center"
+              >
+                <h1 class="mb-2 text-warning">Detection &amp; Sensors</h1>
+                <p class="mb-3">
+                  Early detection solutions tailored for industrial and
+                  commercial environments.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-hover btn-warning text-dark fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#contactModal"
+                >
+                  Contact Us
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img
+              src="images/ansuman-mishra-Bfpdu4TVx1M-unsplash.jpg"
+              class="d-block w-100"
+              alt="Suppression systems"
+              style="height: 60vh; object-fit: cover"
+            />
+            <div class="carousel-caption p-0">
+              <div
+                class="bg-dark bg-opacity-50 text-white p-4 rounded shadow-lg d-inline-block text-center"
+              >
+                <h1 class="mb-2 text-warning">Suppression &amp; Safety</h1>
+                <p class="mb-3">
+                  Comprehensive suppression systems and safety planning for
+                  projects of any size.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-hover btn-warning text-dark fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#contactModal"
+                >
+                  Contact Us
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#kayanCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#kayanCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-5 bg-white">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold text-dark">Our Safety Solutions</h2>
+          <p class="text-muted">
+            Comprehensive fire, detection, and suppression systems for
+            construction projects.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-danger border-2 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-fire text-danger display-4 mb-3"></i>
+                <h5 class="card-title text-danger">Fire Alarm Systems</h5>
+                <p class="card-text">
+                  Design, installation &amp; commissioning for residential and
+                  commercial builds.
+                </p>
+                <a href="#contact" class="btn btn-outline-danger">Learn more</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-warning border-2 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-search text-warning display-4 mb-3"></i>
+                <h5 class="card-title text-warning">Detection &amp; Sensors</h5>
+                <p class="card-text">
+                  Smoke, heat, and gas detection solutions tuned to your site.
+                </p>
+                <a href="#contact" class="btn btn-outline-warning"
+                  >Learn more</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-info border-2 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-droplet text-info display-4 mb-3"></i>
+                <h5 class="card-title text-info">Suppression Systems</h5>
+                <p class="card-text">
+                  Water mist, gas and foam systems for different hazards.
+                </p>
+                <a href="#contact" class="btn btn-outline-info">Learn more</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-success border-2 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-wrench text-success display-4 mb-3"></i>
+                <h5 class="card-title text-success">
+                  Maintenance &amp; Support
+                </h5>
+                <p class="card-text">
+                  Compliance checks, testing and 24/7 support plans.
+                </p>
+                <a href="#contact" class="btn btn-outline-success"
+                  >Learn more</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFERS -->
+    <section id="offers" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold text-dark">Current Offers</h2>
+          <p class="text-muted">
+            Special packages &amp; discounts for construction clients.
+          </p>
+        </div>
+
+        <div class="accordion accordion-flush" id="offersAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="offerHeadingOne">
+              <button
+                class="accordion-button collapsed bg-danger text-white"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#offerCollapseOne"
+                aria-expanded="false"
+                aria-controls="offerCollapseOne"
+              >
+                New Project Starter — Free Site Survey
+              </button>
+            </h2>
+            <div
+              id="offerCollapseOne"
+              class="accordion-collapse collapse"
+              aria-labelledby="offerHeadingOne"
+              data-bs-parent="#offersAccordion"
+            >
+              <div class="accordion-body">
+                Free site survey + 10% off design &amp; installation for
+                new-build projects. Includes initial risk assessment and
+                quotation.
+                <div class="mt-3">
+                  <button
+                    class="btn btn-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#offerModal"
+                    data-offer="New Project Starter"
+                  >
+                    Request Offer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="offerHeadingTwo">
+              <button
+                class="accordion-button collapsed bg-warning text-dark"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#offerCollapseTwo"
+                aria-expanded="false"
+                aria-controls="offerCollapseTwo"
+              >
+                Maintenance Bundle — Quarterly Visits
+              </button>
+            </h2>
+            <div
+              id="offerCollapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="offerHeadingTwo"
+              data-bs-parent="#offersAccordion"
+            >
+              <div class="accordion-body">
+                Annual maintenance package with quarterly inspections and
+                priority response for system faults.
+                <div class="mt-3">
+                  <button
+                    class="btn btn-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#offerModal"
+                    data-offer="Maintenance Bundle"
+                  >
+                    Request Offer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="offerHeadingThree">
+              <button
+                class="accordion-button collapsed bg-info text-white"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#offerCollapseThree"
+                aria-expanded="false"
+                aria-controls="offerCollapseThree"
+              >
+                Retrofit Discount — Fast Commissioning
+              </button>
+            </h2>
+            <div
+              id="offerCollapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="offerHeadingThree"
+              data-bs-parent="#offersAccordion"
+            >
+              <div class="accordion-body">
+                Tailored discount for retrofit projects, with expedited
+                commissioning and documentation.
+                <div class="mt-3">
+                  <button
+                    class="btn btn-info"
+                    data-bs-toggle="modal"
+                    data-bs-target="#offerModal"
+                    data-offer="Retrofit Discount"
+                  >
+                    Request Offer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEEDBACK & COMPLAINTS -->
+    <section id="feedback" class="py-5 bg-white">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold text-dark">Feedback &amp; Complaints</h2>
+          <p class="text-muted">
+            We value your input — leave feedback or submit a complaint and we'll
+            respond promptly.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-warning">
+              <div class="card-body">
+                <h5 class="card-title text-warning">Leave Feedback</h5>
+                <p id="feedbackCardText" class="card-text">
+                  Tell us about your experience with our team or systems.
+                </p>
+
+                <div class="form-floating mb-3">
+                  <textarea
+                    id="feedbackTextarea"
+                    class="form-control"
+                    placeholder="Leave your feedback here"
+                    style="height: 120px"
+                    required
+                  ></textarea>
+                  <label for="feedbackTextarea">Feedback</label>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button
+                    id="sendFeedbackBtn"
+                    type="button"
+                    class="btn btn-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#feedbackConfirmModal"
+                  >
+                    Send Feedback
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    onclick="document.getElementById('feedbackTextarea').value = '';"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-danger">
+              <div class="card-body">
+                <h5 class="card-title text-danger">Submit a Complaint</h5>
+                <p id="complaintCardText" class="card-text">
+                  Issue? describe it, our compliance team will investigate.
+                </p>
+
+                <div class="form-floating mb-3">
+                  <textarea
+                    id="complaintTextarea"
+                    class="form-control"
+                    placeholder="Describe the issue"
+                    style="height: 120px"
+                    required
+                  ></textarea>
+                  <label for="complaintTextarea">Complaint</label>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button
+                    id="sendComplaintBtn"
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#complaintConfirmModal"
+                  >
+                    Submit Complaint
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    onclick="document.getElementById('complaintTextarea').value = '';"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIXED BACKGROUND IMAGE -->
+    <div
+      class="bg-dark py-5"
+      style="
+        background-image: url('images/pexels-jakubzerdzicki-33533879.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        height: 7.375rem;
+      "
+    ></div>
+
+    <!-- PROJECTS (fade-in-up + stagger via JS, card-hover) -->
+    <section id="projects" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold text-dark">Selected Projects</h2>
+          <p class="text-muted">
+            Our recent fire safety installations and system implementations
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card project-card card-hover fade-in-up h-100 shadow-sm"
+            >
+              <img
+                src="images/chris-porter--At4vx7KbAI-unsplash.jpg"
+                class="card-img-top"
+                alt="High-Rise Alarm Installation"
+                height="200"
+                style="object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title text-dark">
+                  High-Rise Alarm Installation
+                </h5>
+                <button class="btn btn-outline-danger mb-2">
+                  View Project Details
+                </button>
+                <p class="card-text text-muted">
+                  Design &amp; commissioning for a 30-storey residential tower
+                  with integrated fire detection and alarm systems.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card project-card card-hover fade-in-up h-100 shadow-sm"
+            >
+              <img
+                src="images/isawred-VafoaKR93Tw-unsplash.jpg"
+                class="card-img-top"
+                alt="Industrial Sensor Network"
+                height="200"
+                style="object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title text-dark">Industrial Sensor Network</h5>
+                <button class="btn btn-outline-danger mb-2">
+                  View Project Details
+                </button>
+                <p class="card-text text-muted">
+                  Industrial-grade detectors and monitoring for a production
+                  facility with hazardous materials.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card project-card card-hover fade-in-up h-100 shadow-sm"
+            >
+              <img
+                src="images/jan-canty-ET3ietAi_AQ-unsplash.jpg"
+                class="card-img-top"
+                alt="Suppression System Retrofit"
+                height="200"
+                style="object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title text-dark">
+                  Suppression System Retrofit
+                </h5>
+                <button class="btn btn-outline-danger mb-2">
+                  View Project Details
+                </button>
+                <p class="card-text text-muted">
+                  Retrofitted suppression system for a logistics warehouse with
+                  specialized foam-based fire suppression.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card project-card card-hover fade-in-up h-100 shadow-sm"
+            >
+              <img
+                src="images/sigmund-0787fTZB0oY-unsplash.jpg"
+                class="card-img-top"
+                alt="Commercial Building Safety"
+                height="200"
+                style="object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title text-dark">Commercial Building Safety</h5>
+                <button class="btn btn-outline-danger mb-2">
+                  View Project Details
+                </button>
+                <p class="card-text text-muted">
+                  Complete fire safety system for a new commercial complex
+                  including alarms, detectors and suppression.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card project-card card-hover fade-in-up h-100 shadow-sm"
+            >
+              <img
+                src="images/isawred-mD1-NVe3ICM-unsplash.jpg"
+                class="card-img-top"
+                alt="Hospital Safety Systems"
+                height="200"
+                style="object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title text-dark">Hospital Safety Systems</h5>
+                <button class="btn btn-outline-danger mb-2">
+                  View Project Details
+                </button>
+                <p class="card-text text-muted">
+                  Specialized medical facility installation with sensitive
+                  detection systems and gas-based suppression.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card project-card card-hover fade-in-up h-100 shadow-sm"
+            >
+              <img
+                src="images/troy-mitchell-ZxK2rxzXy3Q-unsplash.jpg"
+                class="card-img-top"
+                alt="Educational Institution"
+                height="200"
+                style="object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title text-dark">Educational Institution</h5>
+                <button class="btn btn-outline-danger mb-2">
+                  View Project Details
+                </button>
+                <p class="card-text text-muted">
+                  Campus-wide fire safety implementation across multiple
+                  buildings with centralized monitoring.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIXED BACKGROUND IMAGE -->
+    <div
+      class="bg-dark py-5"
+      style="
+        background-image: url('images/pexels-jakubzerdzicki-20614571.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        height: 7.375rem;
+      "
+    ></div>
+
+    <!-- PARTNERS -->
+    <section class="py-5 bg-white">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold text-dark">Our Success Partners</h2>
+          <p class="text-muted">
+            Building lasting relationships with industry leaders
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div
+              class="card partner-card card-hover fade-in-up h-100 shadow border-0 overflow-hidden"
+            >
+              <div class="position-relative">
+                <img
+                  src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=800&auto=format&fit=crop"
+                  class="card-img-top rounded-0"
+                  alt="Al Rajhi Construction"
+                  style="height: 200px; object-fit: cover"
+                />
+                <div class="position-absolute top-0 start-0 m-3">
+                  <span class="badge bg-dark bg-opacity-75 text-white px-2 py-1"
+                    ><i class="bi bi-clock me-1"></i> Jan 2023</span
+                  >
+                </div>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <div class="mt-auto">
+                  <div class="d-flex align-items-center mt-3">
+                    <img
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+                      class="rounded-pill me-3"
+                      width="60"
+                      height="90"
+                      alt="CEO"
+                    />
+                    <div>
+                      <h6 class="mb-0 text-dark">Abdullah Al Rajhi</h6>
+                      <small class="text-muted"
+                        >"Reliable systems for our high-rises"</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div
+              class="card partner-card card-hover fade-in-up h-100 shadow border-0 overflow-hidden"
+            >
+              <div class="position-relative">
+                <img
+                  src="https://images.unsplash.com/photo-1560472355-536de3962603?q=80&w=800&auto=format&fit=crop"
+                  class="card-img-top rounded-0"
+                  alt="Saudi Binladin Group"
+                  style="height: 200px; object-fit: cover"
+                />
+                <div class="position-absolute top-0 start-0 m-3">
+                  <span class="badge bg-dark bg-opacity-75 text-white px-2 py-1"
+                    ><i class="bi bi-clock me-1"></i> Mar 2023</span
+                  >
+                </div>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <div class="mt-auto">
+                  <div class="d-flex align-items-center mt-3">
+                    <img
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
+                      class="rounded-pill me-3"
+                      width="60"
+                      height="90"
+                      alt="CEO"
+                    />
+                    <div>
+                      <h6 class="mb-0 text-dark">Bakr Binladin</h6>
+                      <small class="text-muted"
+                        >"Essential safety for mega projects"</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div
+              class="card partner-card card-hover fade-in-up h-100 shadow border-0 overflow-hidden"
+            >
+              <div class="position-relative">
+                <img
+                  src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=800&auto=format&fit=crop"
+                  class="card-img-top rounded-0"
+                  alt="El Seif Engineering"
+                  style="height: 200px; object-fit: cover"
+                />
+                <div class="position-absolute top-0 start-0 m-3">
+                  <span class="badge bg-dark bg-opacity-75 text-white px-2 py-1"
+                    ><i class="bi bi-clock me-1"></i> Jun 2023</span
+                  >
+                </div>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <div class="mt-auto">
+                  <div class="d-flex align-items-center mt-3">
+                    <img
+                      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
+                      class="rounded-pill me-3"
+                      width="60"
+                      height="90"
+                      alt="CEO"
+                    />
+                    <div>
+                      <h6 class="mb-0 text-dark">Mohammed El Seif</h6>
+                      <small class="text-muted"
+                        >"Expert solutions for complex builds"</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST NEWS -->
+    <!-- Latest News (responsive: clipped images on md+, full-width image on md-) -->
+    <section id="latest-news" class="py-5 bg-white">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold text-dark">Latest News</h2>
+          <p class="text-muted">Updates and case-studies from KayanPCC.</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Card 1: desktop image on RIGHT (clipped), mobile: full-width image on top -->
+          <div class="col-12">
+            <div
+              class="card news-card shadow-sm h-100 overflow-hidden"
+            >
+              <!-- mobile-only full-width image (shows on < md) -->
+              <div class="d-block d-md-none">
+                <img
+                  src="images/isawred-VafoaKR93Tw-unsplash.jpg"
+                  class="w-100"
+                  alt="Fire alarm standards"
+                  style="height: 220px; object-fit: cover"
+                />
+              </div>
+
+              <div class="row g-0 align-items-stretch">
+                <!-- content column -->
+                <div class="col-12 col-md-7 order-2 order-md-1">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-2">
+                      New Fire Alarm Standard Adopted
+                    </h5>
+                    <div class="title-underline mb-3">
+                      <span class="bar"></span>
+                    </div>
+                    <p class="card-text text-muted flex-grow-1">
+                      KayanPCC rolled out the updated regional fire alarm
+                      specifications across three commercial projects to improve
+                      early detection reliability.
+                    </p>
+                    <div class="mt-3 d-flex gap-2">
+                      <button class="btn btn-sm btn-primary">Read</button>
+                      <button class="btn btn-sm btn-outline-secondary">
+                        Share
+                      </button>
+                      <button class="btn btn-sm btn-outline-dark">Save</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- desktop-only clipped image (shows on md+) -->
+                <div
+                  class="col-12 col-md-5 p-0 position-relative right-news-img-container d-none d-md-block order-1 order-md-2"
+                >
+                  <img
+                    src="images/isawred-VafoaKR93Tw-unsplash.jpg"
+                    class="news-img"
+                    alt="Fire alarm standards"
+                  />
+                  <div class="news-img-overlay"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: desktop image on LEFT (clipped), mobile: full-width image on top -->
+          <div class="col-12">
+            <div
+              class="card news-card shadow-sm h-100 overflow-hidden"
+            >
+              <!-- mobile-only full-width image -->
+              <div class="d-block d-md-none">
+                <img
+                  src="images/isawred-2L6a8s2QMnc-unsplash.jpg"
+                  class="w-100"
+                  alt="Sensor network"
+                  style="height: 220px; object-fit: cover"
+                />
+              </div>
+
+              <div class="row g-0 align-items-stretch">
+                <!-- desktop-only clipped image (left) -->
+                <div
+                  class="col-12 col-md-5 p-0 position-relative left-news-img-container d-none d-md-block order-1"
+                >
+                  <img
+                    src="images/isawred-2L6a8s2QMnc-unsplash.jpg"
+                    class="news-img"
+                    alt="Sensor network"
+                  />
+                  <div class="news-img-overlay"></div>
+                </div>
+
+                <!-- content column -->
+                <div class="col-12 col-md-7 order-2">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-2">
+                      Sensor Network Upgrade Completed
+                    </h5>
+                    <div class="title-underline mb-3">
+                      <span class="bar"></span>
+                    </div>
+                    <p class="card-text text-muted flex-grow-1">
+                      Completed a large-scale sensor upgrade at an industrial
+                      plant — improving sensitivity and reducing false alarms.
+                    </p>
+                    <div class="mt-3 d-flex gap-2">
+                      <button class="btn btn-sm btn-primary">Read</button>
+                      <button class="btn btn-sm btn-outline-secondary">
+                        Share
+                      </button>
+                      <button class="btn btn-sm btn-outline-dark">Save</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: desktop image on RIGHT (clipped), mobile: full-width image on top -->
+          <div class="col-12">
+            <div
+              class="card news-card shadow-sm h-100 overflow-hidden"
+            >
+              <!-- mobile-only full-width image -->
+              <div class="d-block d-md-none">
+                <img
+                  src="images/troy-mitchell-ZxK2rxzXy3Q-unsplash.jpg"
+                  class="w-100"
+                  alt="Retrofit program"
+                  style="height: 220px; object-fit: cover"
+                />
+              </div>
+
+              <div class="row g-0 align-items-stretch">
+                <!-- content column -->
+                <div class="col-12 col-md-7 order-2 order-md-1">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-2">
+                      Retrofit Program — Case Study
+                    </h5>
+                    <div class="title-underline mb-3">
+                      <span class="bar"></span>
+                    </div>
+                    <p class="card-text text-muted flex-grow-1">
+                      A case study on retrofitting suppression systems into
+                      legacy warehouses — timeline, cost and lessons learned.
+                    </p>
+                    <div class="mt-3 d-flex gap-2">
+                      <button class="btn btn-sm btn-primary">Read</button>
+                      <button class="btn btn-sm btn-outline-secondary">
+                        Share
+                      </button>
+                      <button class="btn btn-sm btn-outline-dark">Save</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- desktop-only clipped image (right) -->
+                <div
+                  class="col-12 col-md-5 p-0 position-relative right-news-img-container d-none d-md-block order-1 order-md-2"
+                >
+                  <img
+                    src="images/troy-mitchell-ZxK2rxzXy3Q-unsplash.jpg"
+                    class="news-img"
+                    alt="Retrofit program"
+                  />
+                  <div class="news-img-overlay"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT (id matches navbar About Us) -->
+    <section id="about" class="py-5 bg-light">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <h2 class="fw-bold text-dark mb-3">About KayanPCC</h2>
+            <p class="lead">
+              We provide comprehensive safety and security solutions for
+              construction projects of all sizes.
+            </p>
+            <p>
+              With over 15 years of experience, our team of certified engineers
+              delivers reliable, standards-compliant systems — from design to
+              ongoing maintenance.
+            </p>
+
+            <div class="d-flex mt-4">
+              <div class="me-4">
+                <h4 class="text-warning mb-0">500+</h4>
+                <small>Projects</small>
+              </div>
+              <div class="me-4">
+                <h4 class="text-warning mb-0">24/7</h4>
+                <small>Support</small>
+              </div>
+              <div>
+                <h4 class="text-warning mb-0">100%</h4>
+                <small>Compliance</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <img
+              src="images/pexels-jakubzerdzicki-33533879.jpg"
+              class="img-fluid rounded shadow"
+              alt="Construction safety"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT Modal -->
+    <div
+      class="modal fade"
+      id="contactModal"
+      tabindex="-1"
+      aria-labelledby="contactModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-warning border-2">
+          <form id="contactForm" novalidate>
+            <div class="modal-header bg-dark text-white">
+              <h5 class="modal-title" id="contactModalLabel">
+                Contact KayanPCC
+              </h5>
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="contactName" class="form-label">Name</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  id="contactName"
+                  name="name"
+                  placeholder="Your full name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="contactPhone" class="form-label">Phone</label
+                ><input
+                  type="tel"
+                  class="form-control"
+                  id="contactPhone"
+                  name="phone"
+                  placeholder="+966 5X XXX XXXX"
+                  inputmode="tel"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="contactEmail" class="form-label">Email</label
+                ><input
+                  type="email"
+                  class="form-control"
+                  id="contactEmail"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="contactMessage" class="form-label">Message</label
+                ><textarea
+                  class="form-control"
+                  id="contactMessage"
+                  rows="3"
+                  placeholder="How can we help you?"
+                ></textarea>
+              </div>
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="agree"
+                  id="contactAgree"
+                  required
+                /><label class="form-check-label" for="contactAgree"
+                  >I agree to be contacted by KayanPCC regarding my
+                  inquiry.</label
+                >
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="submit"
+                class="btn btn-warning text-dark fw-semibold w-100"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Offer Modal -->
+    <div
+      class="modal fade"
+      id="offerModal"
+      tabindex="-1"
+      aria-labelledby="offerModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="offerForm" novalidate>
+            <div class="modal-header bg-dark text-white">
+              <h5 class="modal-title" id="offerModalLabel">Request Offer</h5>
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <p id="offerSelected" class="text-muted mb-3">Selected offer:</p>
+              <div class="mb-3">
+                <label for="offerName" class="form-label">Name</label
+                ><input id="offerName" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label for="offerPhone" class="form-label">Phone</label
+                ><input
+                  id="offerPhone"
+                  class="form-control"
+                  inputmode="tel"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-warning w-100">
+                Request Offer
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback confirm modal -->
+    <div
+      class="modal fade"
+      id="feedbackConfirmModal"
+      tabindex="-1"
+      aria-labelledby="feedbackConfirmLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="feedbackConfirmLabel">
+              Submit Feedback
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Thank you — would you like to submit your feedback now?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel</button
+            ><button
+              id="confirmFeedbackBtn"
+              type="button"
+              class="btn btn-warning"
+            >
+              Yes, submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complaint confirm modal -->
+    <div
+      class="modal fade"
+      id="complaintConfirmModal"
+      tabindex="-1"
+      aria-labelledby="complaintConfirmLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="complaintConfirmLabel">
+              Submit Complaint
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to submit this complaint to our compliance
+            team?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel</button
+            ><button
+              id="confirmComplaintBtn"
+              type="button"
+              class="btn btn-danger"
+            >
+              Yes, submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER (three logos on md+, single centered on small) -->
+    <footer class="bg-dark text-white py-4">
+      <div class="container">
+        <div class="d-block d-md-none text-center mb-3">
+          <!-- single centered inline-SVG for small devices -->
+          <svg
+            class="rounded-circle"
+            width="72"
+            height="72"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="KayanPCC logo small"
+          >
+            <circle cx="50" cy="50" r="50" fill="#111827" />
+            <linearGradient id="g2" x1="0" x2="1">
+              <stop offset="0" stop-color="#fd7e14" />
+              <stop offset="1" stop-color="#dc3545" />
+            </linearGradient>
+            <path d="M50 18 L66 58 L50 72 L34 58 Z" fill="url(#g2)" />
+            <path
+              d="M50 30 L56 50 L50 58 L44 50 Z"
+              fill="#fff"
+              opacity="0.95"
+            />
+          </svg>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <!-- md+ footer logos (inline SVG repeated) -->
+            <svg
+              class="footer-logo d-none d-md-inline-block me-2 align-top"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-hidden="true"
+            >
+              <circle cx="50" cy="50" r="50" fill="#111827" />
+              <path d="M50 18 L66 58 L50 72 L34 58 Z" fill="#fd7e14" />
+              <path
+                d="M50 30 L56 50 L50 58 L44 50 Z"
+                fill="#fff"
+                opacity="0.95"
+              />
+            </svg>
+            <h5 class="text-warning d-inline">KayanPCC</h5>
+            <p class="small mb-0">
+              Providing safety and security solutions for construction projects
+              since 2008.
+            </p>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <svg
+              class="footer-logo d-none d-md-inline-block me-2 align-top"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-hidden="true"
+            >
+              <circle cx="50" cy="50" r="50" fill="#111827" />
+              <path d="M50 18 L66 58 L50 72 L34 58 Z" fill="#fd7e14" />
+              <path
+                d="M50 30 L56 50 L50 58 L44 50 Z"
+                fill="#fff"
+                opacity="0.95"
+              />
+            </svg>
+            <h5 class="text-warning d-inline">Quick Links</h5>
+            <ul class="list-unstyled small">
+              <li>
+                <a href="#home" class="text-white text-decoration-none">Home</a>
+              </li>
+              <li>
+                <a href="#services" class="text-white text-decoration-none"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a href="#projects" class="text-white text-decoration-none"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="text-white text-decoration-none"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <svg
+              class="footer-logo d-none d-md-inline-block me-2 align-top"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-hidden="true"
+            >
+              <circle cx="50" cy="50" r="50" fill="#111827" />
+              <path d="M50 18 L66 58 L50 72 L34 58 Z" fill="#fd7e14" />
+              <path
+                d="M50 30 L56 50 L50 58 L44 50 Z"
+                fill="#fff"
+                opacity="0.95"
+              />
+            </svg>
+            <h5 class="text-warning d-inline">Connect With Us</h5>
+            <div class="d-flex mt-2">
+              <a
+                href="https://wa.me/9665XXXXXXXX"
+                target="_blank"
+                class="text-white me-3"
+                aria-label="Whatsapp"
+                ><i class="bi bi-whatsapp fs-4"></i
+              ></a>
+              <a
+                href="#"
+                target="_blank"
+                class="text-white me-3"
+                aria-label="Facebook"
+                ><i class="bi bi-facebook fs-4"></i
+              ></a>
+              <a
+                href="https://linkedin.com/company/kayanpcc"
+                target="_blank"
+                class="text-white"
+                aria-label="LinkedIn"
+                ><i class="bi bi-linkedin fs-4"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4 bg-warning" />
+        <p class="mb-0 text-center small">
+          &copy; <span id="year"></span> KayanPCC. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Fixed Social Media Icons -->
+    <div class="position-fixed top-50 end-0 translate-middle-y z-3">
+      <div class="d-flex flex-column">
+        <a
+          href="https://wa.me/9665XXXXXXXX"
+          target="_blank"
+          class="btn btn-hover btn-warning text-dark rounded-circle mb-2 shadow"
+          aria-label="Whatsapp"
+          ><i class="bi bi-whatsapp fs-4"></i
+        ></a>
+        <a
+          href="https://facebook.com/kayanpcc"
+          target="_blank"
+          class="btn btn-hover btn-warning text-dark rounded-circle mb-2 shadow"
+          aria-label="Facebook"
+          ><i class="bi bi-facebook fs-4"></i
+        ></a>
+        <a
+          href="https://linkedin.com/company/kayanpcc"
+          target="_blank"
+          class="btn btn-hover btn-warning text-dark rounded-circle shadow"
+          aria-label="LinkedIn"
+          ><i class="bi bi-linkedin fs-4"></i
+        ></a>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Minimal JS: forms, offer modal, feedback flow, intersection observer + stagger -->
+    <script>
+      // set year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Contact form demo submit
+      (function () {
+        const contactModalEl = document.getElementById("contactModal");
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (!contactForm.checkValidity()) {
+              contactForm.reportValidity();
+              return;
+            }
+            const modal =
+              bootstrap.Modal.getInstance(contactModalEl) ||
+              new bootstrap.Modal(contactModalEl);
+            modal.hide();
+            alert("Thank you! We will contact you shortly.");
+            contactForm.reset();
+          });
+        }
+      })();
+
+      // Offer modal population
+      (function () {
+        const offerModalEl = document.getElementById("offerModal");
+        if (offerModalEl) {
+          offerModalEl.addEventListener("show.bs.modal", function (event) {
+            const button = event.relatedTarget;
+            const offer = button
+              ? button.getAttribute("data-offer")
+              : "Selected Offer";
+            const target = document.getElementById("offerSelected");
+            if (target) target.textContent = "Selected offer: " + offer;
+          });
+
+          const offerForm = document.getElementById("offerForm");
+          if (offerForm) {
+            offerForm.addEventListener("submit", function (e) {
+              e.preventDefault();
+              if (!offerForm.checkValidity()) {
+                offerForm.reportValidity();
+                return;
+              }
+              const offerModal = bootstrap.Modal.getInstance(offerModalEl);
+              offerModal.hide();
+              alert("Offer request received. We will contact you shortly.");
+              offerForm.reset();
+            });
+          }
+        }
+      })();
+
+      // Feedback / Complaint flow
+      (function () {
+        const feedbackTextarea = document.getElementById("feedbackTextarea");
+        const complaintTextarea = document.getElementById("complaintTextarea");
+        const feedbackConfirmModalEl = document.getElementById(
+          "feedbackConfirmModal"
+        );
+        const complaintConfirmModalEl = document.getElementById(
+          "complaintConfirmModal"
+        );
+        const feedbackConfirmModal = feedbackConfirmModalEl
+          ? new bootstrap.Modal(feedbackConfirmModalEl)
+          : null;
+        const complaintConfirmModal = complaintConfirmModalEl
+          ? new bootstrap.Modal(complaintConfirmModalEl)
+          : null;
+
+        const sendFeedbackBtn = document.getElementById("sendFeedbackBtn");
+        if (sendFeedbackBtn && feedbackTextarea && feedbackConfirmModal) {
+          sendFeedbackBtn.addEventListener("click", function () {
+            if (!feedbackTextarea.value.trim()) {
+              feedbackTextarea.reportValidity();
+              return;
+            }
+            feedbackConfirmModal.show();
+          });
+        }
+        const confirmFeedbackBtn =
+          document.getElementById("confirmFeedbackBtn");
+        if (confirmFeedbackBtn && feedbackConfirmModal) {
+          confirmFeedbackBtn.addEventListener("click", function () {
+            feedbackConfirmModal.hide();
+            addThanksBadge("feedbackCardText");
+            if (feedbackTextarea) feedbackTextarea.value = "";
+          });
+        }
+
+        const sendComplaintBtn = document.getElementById("sendComplaintBtn");
+        if (sendComplaintBtn && complaintTextarea && complaintConfirmModal) {
+          sendComplaintBtn.addEventListener("click", function () {
+            if (!complaintTextarea.value.trim()) {
+              complaintTextarea.reportValidity();
+              return;
+            }
+            complaintConfirmModal.show();
+          });
+        }
+        const confirmComplaintBtn = document.getElementById(
+          "confirmComplaintBtn"
+        );
+        if (confirmComplaintBtn && complaintConfirmModal) {
+          confirmComplaintBtn.addEventListener("click", function () {
+            complaintConfirmModal.hide();
+            addThanksBadge("complaintCardText");
+            if (complaintTextarea) complaintTextarea.value = "";
+          });
+        }
+
+        function addThanksBadge(paragraphId) {
+          const p = document.getElementById(paragraphId);
+          if (!p) return;
+          if (p.querySelector(".badge-thanks")) return;
+          const span = document.createElement("span");
+          if (paragraphId === "feedbackCardText") {
+            span.className = "badge bg-success rounded-pill ms-2 badge-thanks";
+            span.textContent = "Thank you";
+            p.appendChild(span);
+          } else if (paragraphId === "complaintCardText") {
+            span.className = "badge bg-danger rounded-pill ms-2 badge-thanks";
+            span.textContent = "Received";
+            p.appendChild(span);
+          }
+        }
+      })();
+
+      // IntersectionObserver + staggered entrance delays (keeps CSS minimal; delays applied via JS)
+      (function () {
+        const nodes = Array.from(document.querySelectorAll(".fade-in-up"));
+        // apply incremental transition-delay for stagger effect
+        nodes.forEach((el, i) => {
+          const delayMs = i * 75; // 75ms stagger
+          el.style.transitionDelay = delayMs + "ms";
+        });
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                obs.unobserve(entry.target); // reveal once
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        nodes.forEach((el) => observer.observe(el));
+      })();
+    </script>
+  </body>
+</html>
