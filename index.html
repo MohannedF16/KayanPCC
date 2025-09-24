@@ -114,6 +114,7 @@
         object-fit: cover;
         transition: all 0.3s ease;
       }
+  
       .news-img-overlay {
         position: absolute;
         top: 0;
@@ -122,6 +123,14 @@
         height: 100%;
         background: rgba(0, 0, 0, 0.22);
         clip-path: inherit;
+      }
+      .right-news-img-container:hover .news-img {
+        transform: scale(1.1);
+        filter: brightness(0.7);
+      }
+      .left-news-img-container:hover .news-img {
+        transform: scale(1.1);
+        filter: brightness(0.7);
       }
       .title-underline {
         height: 6px;
