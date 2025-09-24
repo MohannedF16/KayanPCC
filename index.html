@@ -16,8 +16,13 @@
       rel="stylesheet"
     />
 
-    <!-- Minimal custom CSS (kept tiny; Bootstrap handles the rest) -->
+    
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       /* logo sizing helpers */
       .nav-logo {
         width: 44px;
@@ -39,7 +44,7 @@
         display: inline-block;
       }
 
-      /* micro-interactions + entrance animation (minimal) */
+      /* micro-interactions + entrance animation */
       .card-hover {
         transition: transform 0.28s ease, box-shadow 0.28s ease;
       }
@@ -62,7 +67,7 @@
         transform: scale(0.98, 0.97);
       }
 
-      /* kept decorative project-card rules (small) */
+      /* decorative project-card */
       .project-card::before,
       .project-card::after {
         content: "";
@@ -152,7 +157,7 @@
           class="navbar-brand fw-bold text-warning d-flex align-items-center"
           href="#home"
         >
-          <!-- inline SVG logo (crisp at any size) -->
+          <!-- inline SVG logo -->
           <svg
             class="nav-logo me-2"
             viewBox="0 0 100 100"
@@ -285,7 +290,7 @@
       </div>
     </nav>
 
-    <!-- HERO CAROUSEL (shorter using inline style on images; no extra CSS file rules) -->
+    <!-- HERO CAROUSEL -->
     <main id="home" class="p-0">
       <div
         id="kayanCarousel"
@@ -728,7 +733,7 @@
       "
     ></div>
 
-    <!-- PROJECTS (fade-in-up + stagger via JS, card-hover) -->
+    <!-- PROJECTS -->
     <section id="projects" class="py-5 bg-light">
       <div class="container">
         <div class="text-center mb-5">
@@ -1033,7 +1038,6 @@
     </section>
 
     <!-- LATEST NEWS -->
-    <!-- Latest News (responsive: clipped images on md+, full-width image on md-) -->
     <section id="latest-news" class="py-5 bg-white">
       <div class="container">
         <div class="text-center mb-4">
@@ -1042,12 +1046,12 @@
         </div>
 
         <div class="row g-4">
-          <!-- Card 1: desktop image on RIGHT (clipped), mobile: full-width image on top -->
+          <!-- Card 1 -->
           <div class="col-12">
             <div
               class="card news-card shadow-sm h-100 overflow-hidden"
             >
-              <!-- mobile-only full-width image (shows on < md) -->
+              <!-- (shows on < md) -->
               <div class="d-block d-md-none">
                 <img
                   src="images/isawred-VafoaKR93Tw-unsplash.jpg"
@@ -1082,7 +1086,7 @@
                   </div>
                 </div>
 
-                <!-- desktop-only clipped image (shows on md+) -->
+                <!-- (shows on md+) -->
                 <div
                   class="col-12 col-md-5 p-0 position-relative right-news-img-container d-none d-md-block order-1 order-md-2"
                 >
@@ -1097,7 +1101,7 @@
             </div>
           </div>
 
-          <!-- Card 2: desktop image on LEFT (clipped), mobile: full-width image on top -->
+          <!-- Card 2 -->
           <div class="col-12">
             <div
               class="card news-card shadow-sm h-100 overflow-hidden"
@@ -1113,7 +1117,7 @@
               </div>
 
               <div class="row g-0 align-items-stretch">
-                <!-- desktop-only clipped image (left) -->
+                <!-- desktop-only clipped image -->
                 <div
                   class="col-12 col-md-5 p-0 position-relative left-news-img-container d-none d-md-block order-1"
                 >
@@ -1151,7 +1155,7 @@
             </div>
           </div>
 
-          <!-- Card 3: desktop image on RIGHT (clipped), mobile: full-width image on top -->
+          <!-- Card 3 -->
           <div class="col-12">
             <div
               class="card news-card shadow-sm h-100 overflow-hidden"
@@ -1190,7 +1194,7 @@
                   </div>
                 </div>
 
-                <!-- desktop-only clipped image (right) -->
+                <!-- desktop-only clipped image -->
                 <div
                   class="col-12 col-md-5 p-0 position-relative right-news-img-container d-none d-md-block order-1 order-md-2"
                 >
@@ -1208,7 +1212,7 @@
       </div>
     </section>
 
-    <!-- ABOUT (id matches navbar About Us) -->
+    <!-- ABOUT -->
     <section id="about" class="py-5 bg-light">
       <div class="container">
         <div class="row align-items-center g-4">
@@ -1480,7 +1484,7 @@
       </div>
     </div>
 
-    <!-- FOOTER (three logos on md+, single centered on small) -->
+    <!-- FOOTER -->
     <footer class="bg-dark text-white py-4">
       <div class="container">
         <div class="d-block d-md-none text-center mb-3">
@@ -1784,7 +1788,7 @@
         }
       })();
 
-      // IntersectionObserver + staggered entrance delays (keeps CSS minimal; delays applied via JS)
+      // IntersectionObserver + staggered entrance delays (delays applied via JS)
       (function () {
         const nodes = Array.from(document.querySelectorAll(".fade-in-up"));
         // apply incremental transition-delay for stagger effect
